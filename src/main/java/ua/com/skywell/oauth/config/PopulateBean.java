@@ -28,7 +28,7 @@ public class PopulateBean implements InitializingBean {
         clientDetails1.setRefreshTokenValiditySeconds(60 * 60 * 12);
         clientRegistrationService.addClientDetails(clientDetails1);
 
-        BaseClientDetails clientDetails2 = new BaseClientDetails("client2", "", "read", "client_credentials,password,authorization_code,refresh_token", "ROLE_USER");
+        BaseClientDetails clientDetails2 = new BaseClientDetails("client2", "", "read,write", "client_credentials,password,authorization_code,refresh_token", "ROLE_USER");
         clientDetails2.setClientSecret("secret");
         clientRegistrationService.addClientDetails(clientDetails2);
 
