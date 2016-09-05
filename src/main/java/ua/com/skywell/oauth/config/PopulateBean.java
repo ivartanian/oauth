@@ -24,13 +24,17 @@ public class PopulateBean implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         ClientRegistrationService clientRegistrationService = new JdbcClientDetailsService(dataSource);
 
-        BaseClientDetails clientDetails1 = new BaseClientDetails("sampleClientId", "", "read,write", "implicit", "");
+        BaseClientDetails clientDetails1 = new BaseClientDetails("client1", "", "read,write", "implicit", "");
         clientDetails1.setRefreshTokenValiditySeconds(60 * 60 * 12);
         clientRegistrationService.addClientDetails(clientDetails1);
 
-        BaseClientDetails clientDetails2 = new BaseClientDetails("clientIdPassword", "", "read", "client_credentials,password,authorization_code,refresh_token", "ROLE_USER");
+        BaseClientDetails clientDetails2 = new BaseClientDetails("client2", "", "read", "client_credentials,password,authorization_code,refresh_token", "ROLE_USER");
         clientDetails2.setClientSecret("secret");
         clientRegistrationService.addClientDetails(clientDetails2);
+
+        BaseClientDetails clientDetails3 = new BaseClientDetails("emb", "", "read", "client_credentials,password,authorization_code,refresh_token", "ROLE_USER");
+        clientDetails3.setClientSecret("secret");
+        clientRegistrationService.addClientDetails(clientDetails3);
     }
 
 }
