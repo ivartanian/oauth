@@ -132,39 +132,39 @@ public class OAuth2ServerConfig {
 
     }
 
-//    @Configuration
-//    @EnableResourceServer
-//    protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-//
-//        private final TokenStore tokenStore;
-//
-//        @Autowired
-//        public ResourceServerConfiguration(TokenStore tokenStore) {
-//            this.tokenStore = tokenStore;
-//        }
-//
-//        @Override
-//        public void configure(ResourceServerSecurityConfigurer resources) {
-//            resources.tokenStore(tokenStore).tokenServices(tokenService());
-//        }
-//
-//        @Override
-//        public void configure(HttpSecurity http) throws Exception {
-//            http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and().authorizeRequests()
-//                    .anyRequest().authenticated();
-//        }
-//
-//        @Primary
-//        @Bean
-//        public RemoteTokenServices tokenService() {
-//            RemoteTokenServices tokenService = new RemoteTokenServices();
-//            tokenService.setCheckTokenEndpointUrl("http://localhost:8080/oauth/oauth/check_token");
-//            tokenService.setClientId("emb");
-//            tokenService.setClientSecret("secret");
-//            return tokenService;
-//        }
-//
-//    }
+    @Configuration
+    @EnableResourceServer
+    protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+
+        private final TokenStore tokenStore;
+
+        @Autowired
+        public ResourceServerConfiguration(TokenStore tokenStore) {
+            this.tokenStore = tokenStore;
+        }
+
+        @Override
+        public void configure(ResourceServerSecurityConfigurer resources) {
+            resources.tokenStore(tokenStore).tokenServices(tokenService());
+        }
+
+        @Override
+        public void configure(HttpSecurity http) throws Exception {
+            http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).and().authorizeRequests()
+                    .anyRequest().authenticated();
+        }
+
+        @Primary
+        @Bean
+        public RemoteTokenServices tokenService() {
+            RemoteTokenServices tokenService = new RemoteTokenServices();
+            tokenService.setCheckTokenEndpointUrl("http://localhost:8080/oauth/oauth/check_token");
+            tokenService.setClientId("emb");
+            tokenService.setClientSecret("secret");
+            return tokenService;
+        }
+
+    }
 
     @Configuration
     @PropertySource({"classpath:persistence.properties"})
