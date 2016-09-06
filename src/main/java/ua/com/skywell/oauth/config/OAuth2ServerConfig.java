@@ -32,6 +32,7 @@ import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeSe
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.*;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -158,7 +159,7 @@ public class OAuth2ServerConfig {
 //        public RemoteTokenServices tokenService() {
 //            RemoteTokenServices tokenService = new RemoteTokenServices();
 //            tokenService.setCheckTokenEndpointUrl("http://localhost:8080/oauth/oauth/check_token");
-//            tokenService.setClientId("client2");
+//            tokenService.setClientId("emb");
 //            tokenService.setClientSecret("secret");
 //            return tokenService;
 //        }
