@@ -16,8 +16,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  * Created by viv on 02.09.2016.
  */
 @Configuration
-@EnableWebSecurity
-@Order(-20)
+@EnableWebSecurity(debug = true)
+//@Order(-20)
 public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -35,10 +35,9 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .requestMatchers().antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
-                .and()
-                .httpBasic()
-                .and()
+//                .requestMatchers().antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
+//                .and()
+                .httpBasic().and()
                 .anonymous().disable()
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()

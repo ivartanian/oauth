@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpMethod;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
@@ -61,6 +62,7 @@ public class OAuth2ServerConfig {
         @Override
         public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
             oauthServer
+                    .allowFormAuthenticationForClients()
                     .tokenKeyAccess("permitAll()")
                     .checkTokenAccess("isAuthenticated()");
         }
@@ -132,39 +134,48 @@ public class OAuth2ServerConfig {
 
     }
 
-    @Configuration
-    @EnableResourceServer
-    protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-
-        private final TokenStore tokenStore;
-
-        @Autowired
-        public ResourceServerConfiguration(TokenStore tokenStore) {
-            this.tokenStore = tokenStore;
-        }
-
-        @Override
-        public void configure(ResourceServerSecurityConfigurer resources) {
-            resources.tokenStore(tokenStore).tokenServices(tokenService());
-        }
-
-        @Override
-        public void configure(HttpSecurity http) throws Exception {
-            http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-                    .anyRequest().authenticated();
-        }
-
-        @Primary
-        @Bean
-        public RemoteTokenServices tokenService() {
-            RemoteTokenServices tokenService = new RemoteTokenServices();
-            tokenService.setCheckTokenEndpointUrl("http://localhost:8080/oauth/oauth/check_token");
-            tokenService.setClientId("emb");
-            tokenService.setClientSecret("secret");
-            return tokenService;
-        }
-
-    }
+//    @Configuration
+//    @EnableResourceServer
+//    protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+//
+//        private final TokenStore tokenStore;
+//
+//        @Autowired
+//        public ResourceServerConfiguration(TokenStore tokenStore) {
+//            this.tokenStore = tokenStore;
+//        }
+//
+//        @Override
+//        public void configure(ResourceServerSecurityConfigurer resources) {
+//            resources.tokenStore(tokenStore).tokenServices(tokenService());
+//        }
+//
+//        @Override
+//        public void configure(HttpSecurity http) throws Exception {
+//            http
+//                    .antMatcher("/api/**")
+//                    .sessionManagement()
+//                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                    .and()
+//                    .httpBasic().disable()
+//                    .anonymous().disable()
+//                    .authorizeRequests()
+//                    .anyRequest().authenticated()
+//                    .and()
+//                    .formLogin().permitAll();
+//        }
+//
+//        @Primary
+//        @Bean
+//        public RemoteTokenServices tokenService() {
+//            RemoteTokenServices tokenService = new RemoteTokenServices();
+//            tokenService.setCheckTokenEndpointUrl("http://localhost:8080/oauth/oauth/check_token");
+//            tokenService.setClientId("emb");
+//            tokenService.setClientSecret("secret");
+//            return tokenService;
+//        }
+//
+//    }
 
     @Configuration
     @PropertySource({"classpath:persistence.properties"})
