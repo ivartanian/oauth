@@ -1,4 +1,4 @@
-package ua.com.skywell.oauth.config;
+package ua.com.skywell.oauth.custom;
 
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -7,8 +7,6 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 public class CustomTokenEnhancer implements TokenEnhancer {
     @Override

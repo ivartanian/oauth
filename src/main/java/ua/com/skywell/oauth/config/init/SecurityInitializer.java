@@ -1,4 +1,4 @@
-package ua.com.skywell.oauth.config;
+package ua.com.skywell.oauth.config.init;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

@@ -35,8 +35,6 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-//                .requestMatchers().antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access")
-//                .and()
                 .httpBasic().and()
                 .anonymous().disable()
                 .authorizeRequests()

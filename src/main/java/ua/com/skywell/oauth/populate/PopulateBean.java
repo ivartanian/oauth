@@ -1,4 +1,4 @@
-package ua.com.skywell.oauth.config;
+package ua.com.skywell.oauth.populate;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +35,10 @@ public class PopulateBean implements InitializingBean {
         BaseClientDetails clientDetails3 = new BaseClientDetails("emb", "", "read", "client_credentials,password,authorization_code,refresh_token", "ROLE_USER");
         clientDetails3.setClientSecret("secret");
         clientRegistrationService.addClientDetails(clientDetails3);
+
+        BaseClientDetails clientDetails4 = new BaseClientDetails("633144140184253", "", "read", "client_credentials,password,authorization_code,refresh_token", "ROLE_USER");
+        clientDetails4.setClientSecret("d55483e709a9e2146e1a40528f64f4ef");
+        clientRegistrationService.addClientDetails(clientDetails4);
     }
 
 }

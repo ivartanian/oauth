@@ -1,8 +1,9 @@
-package ua.com.skywell.oauth.config;
+package ua.com.skywell.oauth.config.init;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import ua.com.skywell.oauth.config.AuthWebConfig;
 
 import javax.servlet.Filter;
 
