@@ -7,6 +7,14 @@
           <element id="module-output" name="oauth" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework.social:spring-social-security:1.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.social:spring-social-web:1.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
+          <element id="library" level="project" name="Maven: org.springframework.social:spring-social-core:1.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.social:spring-social-config:1.1.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.webjars:angularjs:1.4.3" />
+          <element id="library" level="project" name="Maven: org.webjars:jquery:2.1.1" />
+          <element id="library" level="project" name="Maven: org.webjars:bootstrap:3.2.0" />
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:9.4.1208.jre7" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.4" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.3.2.RELEASE" />

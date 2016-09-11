@@ -14,10 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configuration.*;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -152,7 +149,7 @@ public class OAuth2ServerConfig {
 
         @Override
         public void configure(ResourceServerSecurityConfigurer resources) {
-            resources.tokenStore(tokenStore).tokenServices(tokenService());
+            resources.tokenStore(tokenStore);
         }
 
         @Override
@@ -168,16 +165,6 @@ public class OAuth2ServerConfig {
                     .anyRequest().authenticated()
                     .and()
                     .formLogin().permitAll();
-        }
-
-        @Primary
-        @Bean
-        public RemoteTokenServices tokenService() {
-            RemoteTokenServices tokenService = new RemoteTokenServices();
-            tokenService.setCheckTokenEndpointUrl("http://localhost:8080/oauth/oauth/check_token");
-            tokenService.setClientId("emb");
-            tokenService.setClientSecret("secret");
-            return tokenService;
         }
 
     }
